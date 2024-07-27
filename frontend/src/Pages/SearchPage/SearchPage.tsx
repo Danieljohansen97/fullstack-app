@@ -2,7 +2,6 @@ import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import "./SearchPage.css";
 import { CompanySearch } from "../../company";
 import { searchCompanies } from "../../api";
-import Navbar from "../../Components/Navbar/Navbar";
 import Search from "../../Components/Search/Search";
 import PortfolioList from "../../Components/Portfolio/PortfolioList/PortfolioList";
 import CardList from "../../Components/CardList/CardList";
@@ -51,7 +50,6 @@ const SearchPage = (props: Props) => {
   };
   return (
     <>
-      <Navbar />
       <Search
         onSearchSubmit={onSearchSubmit}
         handleSearchChange={handleChange}
