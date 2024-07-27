@@ -16,7 +16,8 @@ function App() {
     console.log(e);
   };
 
-  const onClick = async (e: SyntheticEvent) => {
+  const onSearchSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
     const result = await searchCompanies(search);
     if (typeof result === "string") {
       setServerError(result);
@@ -26,11 +27,16 @@ function App() {
     console.log(searchResult)
   };
 
+  const onPortfolioCreate = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log(e);
+  }
+
   return (
     <div className="App">
-      <Search onClick={onClick} handleChange={handleChange} search={search} />
+      <Search onSearchSubmit={onSearchSubmit} handleSearchChange={handleChange} search={search} />
       {serverError && <h1>{serverError}</h1>}
-      <CardList searchResults={searchResult} />
+      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} />
     </div>
   );
 }
