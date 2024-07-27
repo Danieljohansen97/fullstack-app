@@ -20,12 +20,8 @@ function App() {
     const result = await searchCompanies(search);
     if (typeof result === "string") {
       setServerError(result);
-    } else if(result !== undefined &&Array.isArray(result.data)) {
+    } else if(Array.isArray(result.data)) {
       setSearchResult(result.data);
-    } else {
-      // Handle unexpected return type
-      // This is a followup issue due to isAxiosError not working.
-      console.log("Unexpected return type from searchCompanies: ", result);
     }
     console.log(searchResult)
   };
@@ -33,6 +29,7 @@ function App() {
   return (
     <div className="App">
       <Search onClick={onClick} handleChange={handleChange} search={search} />
+      {serverError && <h1>{serverError}</h1>}
       <CardList />
     </div>
   );

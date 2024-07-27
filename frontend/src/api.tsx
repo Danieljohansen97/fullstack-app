@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CompanySearch } from "./company";
 
-interface SearchResponse {
+export interface SearchResponse {
   data: CompanySearch[];
 }
 
@@ -11,8 +11,15 @@ export const searchCompanies = async (query: string) => {
       `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${process.env.REACT_APP_API_KEY}`
     );
     return data;
-  } catch (error: any) {
-    // TODO: Type of error should be AxiosError
-    console.log("Could not use isAxiosError: ", error);
+  } catch (error) {
+    // Had some serious issues with exposing isAxiosError here
+    // Had to take a long hard look at package.json
+    if (axios.isAxiosError(error)) {
+      console.log("error message: ", error.message);
+      return error.message;
+    } else {
+      console.log("unexpected error: ", error);
+      return "An expected error has occured.";
+    }
   }
 };
