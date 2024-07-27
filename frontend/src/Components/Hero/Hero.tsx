@@ -27,7 +27,7 @@ const Hero = (props: Props) => {
           </div>
         </div>
         <div className="mb-24 mx-auto md:w-180 md:px-10 lg:mb-0 lg:w-1/2">
-          <img src={hero} alt="Hero image" />
+          <img src={hero} alt="Hero" />
         </div>
       </div>
     </section>
